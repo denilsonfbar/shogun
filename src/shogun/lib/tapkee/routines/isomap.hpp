@@ -50,7 +50,7 @@ DenseSymmetricMatrix compute_shortest_distances_matrix(const RandomAccessIterato
 
 	DenseSymmetricMatrix shortest_distances(N,N);
 
-#pragma omp parallel shared(shortest_distances,neighbors,begin,callback) default(none)
+#pragma omp parallel shared(shortest_distances,neighbors,begin,callback,N) 
 	{
 		bool* f = new bool[N];
 		bool* s = new bool[N];
@@ -168,7 +168,7 @@ DenseMatrix compute_shortest_distances_matrix(const RandomAccessIterator& begin,
 
 	DenseMatrix shortest_distances(landmarks.size(),N);
 
-#pragma omp parallel shared(shortest_distances,begin,landmarks,neighbors,callback) default(none)
+#pragma omp parallel shared(shortest_distances,begin,landmarks,neighbors,callback,N_landmarks,n_neighbors)
 	{
 		bool* f = new bool[N];
 		bool* s = new bool[N];

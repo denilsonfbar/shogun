@@ -265,7 +265,7 @@ bool CrossValidationStorage::operator==(const CrossValidationStorage& rhs) const
 
 	if (rhs.m_folds_results.size() != m_folds_results.size())
 		return false;
-	for (index_t i = 0; i < m_folds_results.size(); i++)
+	for (index_t i = 0; i < (index_t) m_folds_results.size(); i++)
 	{
 		if (!(m_folds_results[i] == rhs.m_folds_results[i]))
 			return false;

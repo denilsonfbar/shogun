@@ -75,6 +75,7 @@ public:
 	{
 		const index_t C=((CMulticlassLabels*)lab)->get_num_classes();
 		const index_t n=((CMulticlassLabels*)lab)->get_num_labels();
+		
 		Map<VectorXd> eigen_f(f->vector, f->vlen);
 		Map<VectorXd> eigen_m(m->vector, m->vlen);
 
@@ -83,9 +84,11 @@ public:
 
 		float64_t result=0;
 		for(index_t bl=0; bl<C; bl++)
-		{
+		{	
+			VectorXd b1(alpha->block(bl*n,0,n,1));
+			VectorXd b2 (eigen_f.block(bl*n,0,n,1));
 			eigen_f.block(bl*n,0,n,1)=K*alpha->block(bl*n,0,n,1)*CMath::exp(log_scale*2.0);
-			result+=alpha->block(bl*n,0,n,1).dot(eigen_f.block(bl*n,0,n,1))/2.0;
+			result+= b1.dot(b2)/2.0;
 			eigen_f.block(bl*n,0,n,1)+=eigen_m;
 		}
 
@@ -407,9 +410,11 @@ float64_t CMultiLaplaceInferenceMethod::get_derivative_helper(SGMatrix<float64_t
 	//currently only explicit term is computed
 	for(index_t bl=0; bl<C; bl++)
 	{
+
 		result+=((eigen_E.block(0,bl*n,n,n)-eigen_U.block(0,bl*n,n,n).transpose()*eigen_U.block(0,bl*n,n,n)).array()
 			*eigen_dK.array()).sum();
-		result-=(eigen_dK*eigen_alpha.block(bl*n,0,n,1)).dot(eigen_alpha.block(bl*n,0,n,1));
+		VectorXd b1 (eigen_alpha.block(bl*n,0,n,1));
+		result-=(eigen_dK*b1).dot(b1);
 	}
 
 	return result/2.0;
@@ -488,8 +493,10 @@ SGVector<float64_t> CMultiLaplaceInferenceMethod::get_derivative_wrt_mean(
 
 		result[i]=0;
 		//currently only compute the explicit term
-		for(index_t bl=0; bl<C; bl++)
-			result[i]-=eigen_alpha.block(bl*n,0,n,1).dot(eigen_dmu);
+		for(index_t bl=0; bl<C; bl++){
+			VectorXd b1(eigen_alpha.block(bl*n,0,n,1));
+			result[i]-=b1.dot(eigen_dmu);
+		}
 	}
 
 	return result;

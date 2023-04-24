@@ -45,7 +45,7 @@ DenseSymmetricMatrix compute_diffusion_matrix(RandomAccessIterator begin, Random
 	RESTRICT_ALLOC;
 
 	// compute gaussian kernel matrix
-#pragma omp parallel shared(diffusion_matrix,begin,callback) default(none)
+#pragma omp parallel shared(diffusion_matrix,begin,callback,n_vectors,width) 
 	{
 		IndexType i_index_iter, j_index_iter;
 #pragma omp for nowait

@@ -395,11 +395,12 @@ template <class T>
 {
     input_source = input_file;
 
-    if (is_labelled == true)
+    if (is_labelled == true) {
         example_type = E_LABELLED;
-    else
+    }
+    else { 
         example_type = E_UNLABELLED;
-
+    }
 	SG_UNREF(examples_ring);
     examples_ring = new CParseBuffer<T>(size);
     SG_REF(examples_ring);

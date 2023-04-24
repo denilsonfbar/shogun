@@ -213,8 +213,8 @@ namespace shogun
 #endif
 
 #ifdef USE_BOOL
-    PROTOCOLS_SGVECTOR(BoolVector, bool, "?\0", NPY_BOOL)
-    %template(BoolVector) SGVector<bool>;
+  PROTOCOLS_SGVECTOR(BoolVector, bool, "?\0", NPY_BOOL)
+  %template(BoolVector) SGVector<bool>;
 #endif
 #ifdef USE_CHAR
     PROTOCOLS_SGVECTOR(CharVector, char, "c\0", NPY_STRING)

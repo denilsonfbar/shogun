@@ -599,12 +599,12 @@ static std::map<CDenseFeatures< type_name >*, Py_buffer*> extend_ ## class_name 
 %feature("python:nb_inplace_subtract") CDenseFeatures< type_name > #class_name "_inplacesub"
 %feature("python:nb_inplace_multiply") CDenseFeatures< type_name > #class_name "_inplacemul"
 
-%feature("python:sq_item") CDenseFeatures< type_name > #class_name "_getitem"
+%feature("python:sq_item") CDenseFeatures< type_name > (ssizeargfunc) #class_name "_getitem"
 %feature("python:sq_ass_item") CDenseFeatures< type_name > #class_name "_setitem"
 %feature("python:sq_slice") CDenseFeatures< type_name > #class_name "_getslice"
 %feature("python:sq_ass_slice") CDenseFeatures< type_name > #class_name "_setslice"
 
-%feature("python:mp_subscript") CDenseFeatures< type_name > #class_name "_getsubscript"
+%feature("python:mp_subscript") CDenseFeatures< type_name > (binaryfunc) #class_name "_getsubscript"
 %feature("python:mp_ass_subscript") CDenseFeatures< type_name > #class_name "_setsubscript"
 
 %enddef /* PROTOCOLS_DENSEFEATURES */

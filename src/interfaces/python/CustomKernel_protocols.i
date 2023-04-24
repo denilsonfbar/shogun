@@ -611,7 +611,7 @@ static std::map< CCustomKernel*, Py_buffer*> extend_ ## class_name ## _info;
 %feature("python:sq_slice") CCustomKernel #class_name "_getslice"
 %feature("python:sq_ass_slice") CCustomKernel #class_name "_setslice"
 
-%feature("python:mp_subscript") CCustomKernel #class_name "_getsubscript"
+%feature("python:mp_subscript") CCustomKernel (binaryfunc) #class_name "_getsubscript"
 %feature("python:mp_ass_subscript") CCustomKernel #class_name "_setsubscript"
 
 %enddef /* PROTOCOLS_CUSTOMKERNEL */

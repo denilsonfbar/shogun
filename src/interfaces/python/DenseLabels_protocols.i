@@ -345,7 +345,7 @@ SwigPyBuiltin__shogun__ ## class_type ## _type.ht_type.tp_flags = class_name ## 
 %feature("python:nb_inplace_subtract") class_type #class_name "_inplacesub"
 %feature("python:nb_inplace_multiply") class_type #class_name "_inplacemul"
 
-%feature("python:sq_item") class_type #class_name "_getitem"
+%feature("python:sq_item") class_type (ssizeargfunc) #class_name "_getitem"
 %feature("python:sq_ass_item") class_type #class_name "_setitem"
 %feature("python:sq_slice") class_type #class_name "_getslice"
 %feature("python:sq_ass_slice") class_type #class_name "_setslice"

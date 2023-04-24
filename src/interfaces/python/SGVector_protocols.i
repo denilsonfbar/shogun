@@ -344,7 +344,7 @@ SwigPyBuiltin__shogun__SGVectorT_ ## type_name ## _t_type.ht_type.tp_flags = cla
 %feature("python:nb_inplace_subtract") SGVector< type_name > #class_name "_inplacesub"
 %feature("python:nb_inplace_multiply") SGVector< type_name > #class_name "_inplacemul"
 
-%feature("python:sq_item") SGVector< type_name > #class_name "_getitem"
+%feature("python:sq_item") SGVector< type_name > (ssizeargfunc) #class_name "_getitem"
 %feature("python:sq_ass_item") SGVector< type_name > #class_name "_setitem"
 %feature("python:sq_slice") SGVector< type_name > #class_name "_getslice"
 %feature("python:sq_ass_slice") SGVector< type_name > #class_name "_setslice"

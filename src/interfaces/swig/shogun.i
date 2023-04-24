@@ -40,6 +40,7 @@
     static int print_sgobject(PyObject *pyobj, FILE *f, int flags);
 %}
 
+
 %feature("python:slot", "tp_str", functype="reprfunc") shogun::CSGObject::__str__;
 %feature("python:slot", "tp_repr", functype="reprfunc") shogun::CSGObject::__repr__;
 /*%feature("python:slot", "tp_hash", functype="hashfunc") shogun::CSGObject::myHashFunc;*/
@@ -85,21 +86,38 @@
 %include "Boost_includes.i"
 
 %include "SGBase.i"
+
+%feature("novaluewrapper") shogun::SGStringList<char>;
+%template() shogun::SGStringList<char>;
+
+
 %include "Machine.i"
 %include "IO.i"
 %include "Library.i"
+
+
+%feature("novaluewrapper") shogun::SGVector<unsigned int>;
+%template() shogun::SGVector<unsigned int>;
+
+
 %include "Mathematics.i"
 %include "Features.i"
+
 %include "Converter.i"
 %include "Preprocessor.i"
+
 %include "Evaluation.i"
 %include "Distance.i"
 %include "Kernel.i"
 %include "Distribution.i"
+
+
 %include "Classifier.i"
 %include "Regression.i"
 %include "Clustering.i"
 %include "Structure.i"
+
+
 %include "Multiclass.i"
 %include "Transfer.i"
 %include "Loss.i"
@@ -113,9 +131,12 @@
 %include "NeuralNets.i"
 %include "bagging.i"
 %include "Boost.i"
-
 %include "ParameterObserver.i"
+
+
+
 
 #if defined(SWIGPERL)
 %include "abstract_types_extension.i"
 #endif
+
